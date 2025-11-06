@@ -1,0 +1,38 @@
+[
+  {
+    "run_id": "master_baseline_001",
+    "params": {
+      "n_estimators": 100,
+      "max_depth": 10
+    },
+    "metrics": {
+      "rmse": 0.020564,
+      "mae": 0.007326,
+      "r2": 0.84723
+    },
+    "git_commit": "d19117f",
+    "comments": "Initial baseline model.",
+    "plots": {
+      "residuals": "plots/master_baseline_001_residuals.png",
+      "feature_importance": "plots/master_baseline_001_feature_importance.png"
+    }
+  },
+  {
+    "run_id": "tuned_final_002",
+    "params": {
+      "n_estimators": 200,
+      "max_depth": 25
+    },
+    "metrics": {
+      "rmse": 0.020662,
+      "mae": 0.007531,
+      "r2": 0.82763
+    },
+    "git_commit": "a9fe33b",
+    "comments": "Tuned model with more trees and depth.",
+    "plots": {
+      "residuals": "plots/tuned_final_002_residuals.png",
+      "feature_importance": "plots/tuned_final_002_feature_importance.png"
+    }
+  }
+]

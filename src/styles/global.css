@@ -1,0 +1,26 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(129,140,248,0.15), transparent 60%),
+    radial-gradient(circle at 90% 20%, rgba(34,211,238,0.15), transparent 60%),
+    linear-gradient(180deg, #0F172A, #020617);
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f3f7;
+}
+::-webkit-scrollbar-thumb {
+  background: #c4c9d4;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8aebb;
+}
