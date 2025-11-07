@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  aqua-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aqua-analytics-dashboard
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - aqua-network
+    labels:
+      - "com.aqua.description=Aqua Analytics CPU Prediction Dashboard"
+      - "com.aqua.version=1.0.0"
+
+networks:
+  aqua-network:
+    driver: bridge
