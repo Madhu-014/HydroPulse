@@ -1,223 +1,79 @@
-🌊 HydroPulse – Intelligent Node Health & CPU Prediction Dashboard
+🌊 HydroPulse – Real-Time Water Quality Monitoring Dashboard
 
-A modern, visually rich monitoring dashboard built with React + Vite + Material-UI + Recharts, designed for ML Ops, cluster monitoring, node health tracking, and CPU usage prediction.
-HydroPulse provides interactive experiment visualization, node performance summaries, and real-time prediction analytics — all wrapped in a beautiful blue–green–purple themed UI.
+HydroPulse is a modern full-stack water quality monitoring system designed to collect, analyze, and visualize real-time environmental sensor data.
+It provides a clean, intuitive dashboard built with React + Vite, enabling users to track key water parameters such as pH, temperature, turbidity, TDS, and more.
 
+This project is ideal for IoT + ML use cases, smart water networks, and environmental monitoring applications.
 
+✨ Features
+🔹 Real-Time Dashboard
 
+Live readings for pH, Temperature, TDS, Turbidity
 
+Smooth animated charts powered by Recharts
 
+Clean UI built with Material-UI
 
+🔹 Sensor Data Ingestion
 
+Collects readings from IoT hardware (NodeMCU/ESP32 etc.)
 
+Simple backend endpoint for posting sensor data
 
+🔹 Historical Data Visualization
 
-✨ Highlights
+Time-series charts
 
-💠 HydroPulse Theme – Professional blue-green-purple ML dashboard look
+Filters by hour/day/week
 
-📊 Node Health Monitoring – RMSE, MAE, R², Latency, Error Rate & health indicators
+CSV export support (optional)
 
-🔮 CPU Prediction Engine – Actual vs predicted CPU usage with accuracy tracking
+🔹 Alerts & Status Indicators
 
-📈 Advanced Visualization Suite – Error charts, performance scoring, smoothing analysis
+Automatic color-coded severity levels
+(e.g., high turbidity → red alert)
 
-🔍 Run Insights – Expandable drawers with configuration, metrics & experiment details
+Highlight dangerous readings instantly
 
-⚡ Ultra Fast – Built with Vite + optimized asset loading
+🔹 Optimized Frontend
 
-📱 Responsive – Works perfectly on laptop, tablet, and mobile
+Built with Vite (super-fast dev + production)
 
-🐳 Docker & Vercel Ready – Deploy anywhere effortlessly
+Responsive design for all screen sizes
 
-🚀 Core Features
-🔹 Node Health & Metrics Summary
-
-RMSE, MAE, Latency, Error Rate, and custom metrics
-
-Gradient metric cards
-
-Best-run indicators
-
-Linear progress visualization
-
-🔹 HydroPulse Charts Panel
-
-Interactive charts using Recharts:
-
-📊 Error Analysis Chart (RMSE, MAE, R²)
-
-🚀 Performance Score Chart
-
-🔁 Trend Smoothing Index (New)
-
-📉 Stability/Volatility Metric (New)
-
-🔹 CPU Usage Prediction
-
-Real-time prediction using a moving average-based model
-
-Trend-corrected predictions
-
-Accuracy % per datapoint
-
-Visual scatter + line chart comparison
-
-🔹 Runs Management
-
-View all ML experiments
-
-Sort, filter, expand, and inspect runs
-
-Git commit, parameters, comments & plots
-
-Detailed sidebar drawer
-
-🧩 Project Structure
+📁 Project Structure
 HydroPulse/
-├── public/
-│   ├── results.json                 # Experiment runs
-│   └── plots/                       # Stored experiment plots
-├── src/
-│   ├── components/
-│   │   ├── CPUPredictionTable.jsx   # CPU prediction with accuracy tracking
-│   │   ├── MetricsSummary.jsx       # Node health metric cards
-│   │   ├── ChartsPanel.jsx          # Interactive analytics charts
-│   │   ├── RunsTable.jsx            # Runs listing
-│   │   ├── DetailsDrawer.jsx        # Run details drawer
-│   │   ├── LayoutShell.jsx          # Main layout container
-│   │   └── utils.js                 # Shared utilities
-│   ├── App.jsx                      # Root application
-│   ├── main.jsx                     # Entry point
-│   └── theme.js                     # HydroPulse color theme
-├── Dockerfile
-├── docker-compose.yml
-├── nginx.conf
-├── .dockerignore
-└── package.json
+├── backend/
+│   ├── server.js                # Express backend
+│   ├── routes/                  # API routes
+│   ├── models/                  # DB models (if using MongoDB)
+│   └── database.js              # DB connection
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/          # UI components
+│   │   ├── pages/               # Dashboard pages
+│   │   ├── hooks/               # Custom React hooks
+│   │   ├── context/             # Global context
+│   │   ├── api.js               # API calls
+│   │   └── main.jsx
+│   ├── vite.config.js
+│   └── package.json
+│
+└── README.md
 
-💻 Local Development
+🚀 Quick Start Guide
+✅ Clone the Repository
+git clone https://github.com/Madhu-014/HydroPulse.git
+cd HydroPulse
+
+▶️ Frontend Setup (React + Vite)
+cd frontend
 npm install
 npm run dev
 
 
-App runs on:
-👉 http://localhost:5173
+Your app will run at:
 
-🏗️ Production Build
-npm run build
-npm run preview
-
-🐳 Docker Deployment
-Using Docker Compose
-docker-compose up -d
-docker-compose logs -f
-docker-compose down
-
-Direct Docker Build
-docker build -t hydropulse-dashboard .
-docker run -d -p 3000:80 hydropulse-dashboard
-
-
-Dashboard:
-👉 http://localhost:3000
-
-Docker Features
-
-Multi-stage build
-
-Nginx optimized for SPAs
-
-Gzip compression
-
-Static caching
-
-Security headers
-
-🎨 Design Customization
-
-Modify colors in theme.js:
-
-primary:   { main: "#3ABEF9" },   // Blue
-secondary: { main: "#14B8A6" },   // Teal
-accent:    { main: "#8B5CF6" },   // Purple
-
-📁 Customize Prediction Data
-
-Inside CPUPredictionTable.jsx:
-
-const actualCPUData = [0.0019, 0.0037, 0.0105, ...];
-
-🧠 CPU Prediction Model
-
-The dashboard uses:
-
-Moving Average (window=3)
-
-Directional trend correction
-
-Error computation per point
-
-Total accuracy score
-
-Real & predicted curve visualization
-
-Simple but perfect for monitoring demos and MLOps workloads.
-
-🌐 Deploying to Vercel
-
-HydroPulse is fully Vercel compatible.
-
-Steps:
-
-Commit your project to GitHub
-
-Go to Vercel → New Project
-
-Select your HydroPulse repo
-
-Build settings auto-detected
-
-Deploy 🚀
-
-Each push triggers automatic redeploys.
-
-🔐 Security Features
-
-Content Security Policy ready
-
-X-Frame-Options
-
-X-XSS-Protection
-
-Mime-sniff protection
-
-HTTPS-ready with proxy
-
-📈 Performance Optimizations
-
-Code splitting
-
-Lazy loading
-
-Minified build
-
-Static asset compression
-
-Fast Vite server
-
-🤝 Contributing
-
-Fork the repo
-
-Create a feature branch
-
-Push changes
-
-Create PR
-
-📜 License
-
-MIT License
-
-❤️ Made for ML Engineers, MLOps enthusiasts, and Cloud Developers
+http://localhost:5173
