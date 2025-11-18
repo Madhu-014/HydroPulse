@@ -14,99 +14,98 @@ It features a clean, intuitive **React + Vite dashboard** that displays key wate
 - Modern UI built using **Material-UI**
 
 ### 🔹 **Sensor Data Ingestion**
-- Supports hardware like **ESP32, NodeMCU (ESP8266), Arduino + sensors**
+- Supports hardware like **ESP32, NodeMCU (ESP8266), Arduino + sensors)**
 - Backend API endpoint for pushing sensor readings
 
 ### 🔹 **Historical Data Visualization**
 - Interactive **time-series charts**
 - Filters by **hour, day, week**
-- (Optional) CSV export for analysis
+- (Optional) CSV export
 
 ### 🔹 **Alerts & Status Indicators**
-- Color-coded severity states  
-  (e.g., **high turbidity → red danger alert**)
-- Highlights unstable or unsafe water readings instantly
+- Color-coded alert levels  
+- Auto-detection of unsafe readings (e.g., **high turbidity → red alert**)
 
 ### 🔹 **Optimized Frontend**
-- Built using **Vite** for ultra-fast development + production
-- Fully **responsive** across all screen sizes
+- Built with **Vite** (super-fast builds)
+- Fully **responsive** for all screen sizes
 
 ---
 
 ## 📁 Project Structure
 
+```plaintext
 HydroPulse/
 ├── backend/
-│ ├── server.js # Express backend server
-│ ├── routes/ # API routes
-│ ├── models/ # Database models (MongoDB optional)
-│ └── database.js # DB connection file
+│   ├── server.js                # Express backend server
+│   ├── routes/                  # API routes
+│   ├── models/                  # Database models (MongoDB optional)
+│   └── database.js              # DB connection file
 │
 ├── frontend/
-│ ├── public/
-│ ├── src/
-│ │ ├── components/ # Reusable UI components
-│ │ ├── pages/ # Dashboard & other pages
-│ │ ├── hooks/ # Custom React hooks
-│ │ ├── context/ # Global context providers
-│ │ ├── api.js # API communication
-│ │ └── main.jsx # React entry point
-│ ├── vite.config.js
-│ └── package.json
+│   ├── public/
+│   ├── src/
+│   │   ├── components/          # Reusable UI components
+│   │   ├── pages/               # Dashboard & other pages
+│   │   ├── hooks/               # Custom React hooks
+│   │   ├── context/             # Global state providers
+│   │   ├── api.js               # API communication
+│   │   └── main.jsx             # React root
+│   ├── vite.config.js
+│   └── package.json
 │
 └── README.md
+```
 
-yaml
-Copy code
-
----
-
-## 🚀 Quick Start Guide
-
-### ✅ **Clone the Repository**
-```bash
+🚀 Quick Start Guide
+✅ Clone the Repository
 git clone https://github.com/Madhu-014/HydroPulse.git
 cd HydroPulse
+
 ▶️ Frontend Setup (React + Vite)
-bash
-Copy code
 cd frontend
 npm install
 npm run dev
-Your frontend will start at:
+
+
+Your frontend runs at:
 
 👉 http://localhost:5173
 
 ⚙️ Backend Setup (Node.js + Express)
-bash
-Copy code
 cd backend
 npm install
 npm start
+
+
 Backend runs at:
 
 👉 http://localhost:5000
 
-🌐 Deploying to Vercel (Frontend)
+🌐 Deploying Frontend to Vercel
+
 Push your project to GitHub
 
-Go to Vercel → New Project → Import GitHub Repo
+Open Vercel Dashboard
+
+Click New Project → Import GitHub Repo
 
 Select HydroPulse
 
-Set the following:
+Set:
 
-yaml
-Copy code
 Framework Preset: Vite
 Build Command: npm run build
 Output Directory: dist
+
+
 Click Deploy 🎉
 
-Your live dashboard will be hosted online automatically.
+Your live dashboard will be deployed instantly.
 
 🛠️ Tech Stack
 Frontend
+
 React 18
 
 Vite
@@ -118,6 +117,7 @@ Recharts
 Axios
 
 Backend
+
 Node.js
 
 Express
@@ -125,23 +125,26 @@ Express
 MongoDB (optional)
 
 Deployment
-Vercel (frontend)
 
-Render/Heroku/AWS/Local server (backend)
+Vercel (Frontend)
+
+Render / Heroku / AWS / Local Server (Backend)
 
 🔮 Future Enhancements
+
 ML-based anomaly detection
 
 Predictive water quality scoring
 
 SMS/Email alert notifications
 
-Multi-sensor support
+Multi-sensor multi-node support
 
 Offline IoT data buffering
 
 🤝 Contributing
-Fork the repository
+
+Fork the repo
 
 Create a feature branch
 
@@ -150,8 +153,9 @@ Commit your changes
 Open a Pull Request
 
 📄 License
+
 MIT License © 2025
 
 ❤️ Acknowledgments
-Thanks to the open-source community behind React, Vite, Express, and Material-UI.
 
+Thanks to the open-source community behind React, Vite, Express, Material-UI, and Recharts.
