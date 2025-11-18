@@ -1,240 +1,223 @@
-# 🚀 Aqua Analytics - CPU Prediction Dashboard
+🌊 HydroPulse – Intelligent Node Health & CPU Prediction Dashboard
 
-A stunning, modern React dashboard for ML experiment visualization with real-time CPU usage prediction analysis. Built with React, Vite, Material-UI, and Recharts with a beautiful glassmorphic design.
+A modern, visually rich monitoring dashboard built with React + Vite + Material-UI + Recharts, designed for ML Ops, cluster monitoring, node health tracking, and CPU usage prediction.
+HydroPulse provides interactive experiment visualization, node performance summaries, and real-time prediction analytics — all wrapped in a beautiful blue–green–purple themed UI.
 
-![Dashboard Preview](https://img.shields.io/badge/Status-Production%20Ready-success)
-![Docker](https://img.shields.io/badge/Docker-Enabled-blue)
-![React](https://img.shields.io/badge/React-18.2-61dafb)
-![Material--UI](https://img.shields.io/badge/Material--UI-5.14-007FFF)
 
-## ✨ Features
 
-- 🎨 **Stunning Modern UI** - Glassmorphic design with gradient animations and smooth transitions
-- 📊 **CPU Prediction Table** - Real-time comparison of predicted vs actual CPU usage with accuracy metrics
-- 📈 **Interactive Charts** - Multiple visualization modes (Area, Bar, Scatter, Line charts)
-- 🎯 **Performance Metrics** - RMSE, R² Score, MAE tracking with best run indicators
-- 🔍 **Advanced Filtering** - Search and sort functionality for experiment runs
-- 📱 **Responsive Design** - Optimized for desktop, tablet, and mobile devices
-- 🐳 **Docker Ready** - Fully containerized with production-optimized build
-- ⚡ **Lightning Fast** - Built with Vite for optimal performance
 
-## 🎯 Key Components
 
-### CPU Prediction Analysis
-- **29 Data Points** - Real CPU usage samples with ML predictions
-- **Visual Comparison** - Beautiful area charts showing actual vs predicted values
-- **Accuracy Tracking** - Per-sample and overall accuracy metrics
-- **Color-Coded Status** - Visual indicators for prediction accuracy
 
-### Performance Dashboard
-- **Metric Cards** - Animated cards showing RMSE, R², MAE, and total runs
-- **Multi-Mode Charts** - Switch between different visualization styles
-- **Run Details** - Expandable drawer with complete experiment information
-- **Real-Time Updates** - Dynamic data loading and filtering
 
-## 🚀 Quick Start
 
-### Local Development
 
-```bash
-# Install dependencies
-npm install
 
-# Start development server
-npm run dev
+✨ Highlights
 
-# Open browser at http://localhost:5173
-```
+💠 HydroPulse Theme – Professional blue-green-purple ML dashboard look
 
-### Production Build
+📊 Node Health Monitoring – RMSE, MAE, R², Latency, Error Rate & health indicators
 
-```bash
-# Build for production
-npm run build
+🔮 CPU Prediction Engine – Actual vs predicted CPU usage with accuracy tracking
 
-# Preview production build
-npm run preview
-```
+📈 Advanced Visualization Suite – Error charts, performance scoring, smoothing analysis
 
-## 🐳 Docker Deployment
+🔍 Run Insights – Expandable drawers with configuration, metrics & experiment details
 
-### Using Docker Compose (Recommended)
+⚡ Ultra Fast – Built with Vite + optimized asset loading
 
-```bash
-# Build and start the container
-docker-compose up -d
+📱 Responsive – Works perfectly on laptop, tablet, and mobile
 
-# View logs
-docker-compose logs -f
+🐳 Docker & Vercel Ready – Deploy anywhere effortlessly
 
-# Stop the container
-docker-compose down
-```
+🚀 Core Features
+🔹 Node Health & Metrics Summary
 
-The dashboard will be available at `http://localhost:3000`
+RMSE, MAE, Latency, Error Rate, and custom metrics
 
-### Using Docker Directly
+Gradient metric cards
 
-```bash
-# Build the image
-docker build -t aqua-analytics-dashboard .
+Best-run indicators
 
-# Run the container
-docker run -d -p 3000:80 --name aqua-dashboard aqua-analytics-dashboard
+Linear progress visualization
 
-# View logs
-docker logs -f aqua-dashboard
+🔹 HydroPulse Charts Panel
 
-# Stop the container
-docker stop aqua-dashboard
-docker rm aqua-dashboard
-```
+Interactive charts using Recharts:
 
-### Docker Features
-- ✅ Multi-stage build for minimal image size
-- ✅ Nginx web server for production
-- ✅ Health checks enabled
-- ✅ Gzip compression
-- ✅ Security headers configured
-- ✅ Static asset caching
-- ✅ SPA routing support
+📊 Error Analysis Chart (RMSE, MAE, R²)
 
-## 📁 Project Structure
+🚀 Performance Score Chart
 
-```
-aqua-frontend/
+🔁 Trend Smoothing Index (New)
+
+📉 Stability/Volatility Metric (New)
+
+🔹 CPU Usage Prediction
+
+Real-time prediction using a moving average-based model
+
+Trend-corrected predictions
+
+Accuracy % per datapoint
+
+Visual scatter + line chart comparison
+
+🔹 Runs Management
+
+View all ML experiments
+
+Sort, filter, expand, and inspect runs
+
+Git commit, parameters, comments & plots
+
+Detailed sidebar drawer
+
+🧩 Project Structure
+HydroPulse/
 ├── public/
-│   ├── results.json          # Experiment data
-│   └── plots/                # Chart images
+│   ├── results.json                 # Experiment runs
+│   └── plots/                       # Stored experiment plots
 ├── src/
 │   ├── components/
-│   │   ├── CPUPredictionTable.jsx    # 🆕 CPU prediction component
-│   │   ├── MetricsSummary.jsx        # Performance metrics cards
-│   │   ├── ChartsPanel.jsx           # Interactive charts
-│   │   ├── RunsTable.jsx             # Experiment runs table
-│   │   ├── DetailsDrawer.jsx         # Run details sidebar
-│   │   ├── LayoutShell.jsx           # Main layout
-│   │   └── utils.js                  # Utility functions
-│   ├── App.jsx                       # Main application
-│   ├── main.jsx                      # Entry point
-│   └── theme.js                      # 🆕 Enhanced MUI theme
-├── Dockerfile                        # 🆕 Docker configuration
-├── docker-compose.yml                # 🆕 Docker Compose setup
-├── nginx.conf                        # 🆕 Nginx configuration
-├── .dockerignore                     # 🆕 Docker ignore rules
-└── package.json                      # Dependencies
-```
+│   │   ├── CPUPredictionTable.jsx   # CPU prediction with accuracy tracking
+│   │   ├── MetricsSummary.jsx       # Node health metric cards
+│   │   ├── ChartsPanel.jsx          # Interactive analytics charts
+│   │   ├── RunsTable.jsx            # Runs listing
+│   │   ├── DetailsDrawer.jsx        # Run details drawer
+│   │   ├── LayoutShell.jsx          # Main layout container
+│   │   └── utils.js                 # Shared utilities
+│   ├── App.jsx                      # Root application
+│   ├── main.jsx                     # Entry point
+│   └── theme.js                     # HydroPulse color theme
+├── Dockerfile
+├── docker-compose.yml
+├── nginx.conf
+├── .dockerignore
+└── package.json
 
-## 🎨 Customization
+💻 Local Development
+npm install
+npm run dev
 
-### Theme Colors
-Edit `src/theme.js` to customize the color scheme:
-```javascript
-primary: { main: "#6366F1" }      // Indigo
-secondary: { main: "#EC4899" }    // Pink
-success: { main: "#10B981" }      // Green
-warning: { main: "#F59E0B" }      // Amber
-```
 
-### CPU Data
-Update the CPU usage data in `src/components/CPUPredictionTable.jsx`:
-```javascript
-const actualCPUData = [
-  0.001966693, 0.003744092, 0.010520073, ...
-];
-```
+App runs on:
+👉 http://localhost:5173
 
-### Experiment Data
-Edit `public/results.json` to add/modify experiment runs:
-```json
-{
-  "run_id": "experiment_001",
-  "params": { "n_estimators": 100, "max_depth": 10 },
-  "metrics": { "rmse": 0.02, "mae": 0.007, "r2": 0.84 },
-  "git_commit": "abc123",
-  "comments": "Baseline model",
-  "plots": {
-    "residuals": "plots/experiment_001_residuals.png",
-    "feature_importance": "plots/experiment_001_feature_importance.png"
-  }
-}
-```
+🏗️ Production Build
+npm run build
+npm run preview
 
-## 🛠️ Technology Stack
+🐳 Docker Deployment
+Using Docker Compose
+docker-compose up -d
+docker-compose logs -f
+docker-compose down
 
-- **Frontend Framework:** React 18.2
-- **Build Tool:** Vite 7.2
-- **UI Library:** Material-UI 5.14
-- **Charts:** Recharts 2.8
-- **Styling:** Emotion (CSS-in-JS)
-- **Font:** Plus Jakarta Sans
-- **Server:** Nginx (Production)
-- **Container:** Docker
+Direct Docker Build
+docker build -t hydropulse-dashboard .
+docker run -d -p 3000:80 hydropulse-dashboard
 
-## 📊 CPU Prediction Algorithm
 
-The dashboard includes a simple moving average prediction algorithm:
-- **Window Size:** 3 samples
-- **Trend Analysis:** Linear trend adjustment
-- **Accuracy Tracking:** Per-sample error calculation
-- **Visualization:** Dual-line area chart comparison
+Dashboard:
+👉 http://localhost:3000
 
-## 🌐 Browser Support
+Docker Features
 
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
-- Opera
+Multi-stage build
 
-## 📝 Scripts
+Nginx optimized for SPAs
 
-```bash
-npm run dev      # Start development server
-npm run build    # Build for production
-npm run preview  # Preview production build
-npm run lint     # Run linting (if configured)
-```
+Gzip compression
 
-## 🔒 Security Features
+Static caching
 
-- X-Frame-Options header
-- X-Content-Type-Options header
-- X-XSS-Protection header
-- Content Security Policy ready
-- HTTPS ready (requires reverse proxy)
+Security headers
 
-## 📈 Performance Optimizations
+🎨 Design Customization
 
-- Code splitting
-- Lazy loading
-- Asset optimization
-- Gzip compression
-- Browser caching
-- Minified production build
+Modify colors in theme.js:
 
-## 🤝 Contributing
+primary:   { main: "#3ABEF9" },   // Blue
+secondary: { main: "#14B8A6" },   // Teal
+accent:    { main: "#8B5CF6" },   // Purple
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+📁 Customize Prediction Data
 
-## 📄 License
+Inside CPUPredictionTable.jsx:
 
-This project is licensed under the MIT License.
+const actualCPUData = [0.0019, 0.0037, 0.0105, ...];
 
-## 🙏 Acknowledgments
+🧠 CPU Prediction Model
 
-- Material-UI team for the excellent component library
-- Recharts team for the charting library
-- React team for the amazing framework
+The dashboard uses:
 
-## 📞 Support
+Moving Average (window=3)
 
-For issues, questions, or contributions, please open an issue on GitHub.
+Directional trend correction
 
----
+Error computation per point
 
-**Made with ❤️ for ML Engineers and Data Scientists**
+Total accuracy score
+
+Real & predicted curve visualization
+
+Simple but perfect for monitoring demos and MLOps workloads.
+
+🌐 Deploying to Vercel
+
+HydroPulse is fully Vercel compatible.
+
+Steps:
+
+Commit your project to GitHub
+
+Go to Vercel → New Project
+
+Select your HydroPulse repo
+
+Build settings auto-detected
+
+Deploy 🚀
+
+Each push triggers automatic redeploys.
+
+🔐 Security Features
+
+Content Security Policy ready
+
+X-Frame-Options
+
+X-XSS-Protection
+
+Mime-sniff protection
+
+HTTPS-ready with proxy
+
+📈 Performance Optimizations
+
+Code splitting
+
+Lazy loading
+
+Minified build
+
+Static asset compression
+
+Fast Vite server
+
+🤝 Contributing
+
+Fork the repo
+
+Create a feature branch
+
+Push changes
+
+Create PR
+
+📜 License
+
+MIT License
+
+❤️ Made for ML Engineers, MLOps enthusiasts, and Cloud Developers
