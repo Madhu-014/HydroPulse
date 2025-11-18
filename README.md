@@ -78,9 +78,6 @@ npm install
 npm start
 
 
-Backend runs at:
-
-👉 http://localhost:5000
 
 🌐 Deploying Frontend to Vercel
 
