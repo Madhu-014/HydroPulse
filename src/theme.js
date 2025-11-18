@@ -1,99 +1,57 @@
+// theme.js
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
     mode: "dark",
-    primary: { 
-      main: "#6366F1",
-      light: "#818CF8",
-      dark: "#4F46E5"
+
+    primary: {
+      main: "#3ABFF8",      // bright water blue
+      light: "#7DD3FC",
+      dark: "#0284C7",
+      contrastText: "#ffffff",
     },
-    secondary: { 
-      main: "#EC4899",
-      light: "#F472B6",
-      dark: "#DB2777"
+
+    secondary: {
+      main: "#34D399",      // green accent
+      light: "#6EE7B7",
+      dark: "#059669",
+      contrastText: "#ffffff",
     },
-    success: { main: "#10B981" },
-    warning: { main: "#F59E0B" },
-    error: { main: "#EF4444" },
-    info: { main: "#06B6D4" },
+
+    accent: {
+      main: "#A78BFA",      // subtle purple for accents
+      light: "#C4B5FD",
+      dark: "#7C3AED",
+    },
+
     background: {
-      default: "#0A0E27",
-      paper: "#131830"
-    }
+      default: "#081226",   // dark bluish marine background
+      paper: "#0F1B33",     // cards slightly lighter
+    },
+
+    gradients: {
+      primary:
+        "linear-gradient(135deg, #3ABFF8 0%, #34D399 40%, #A78BFA 100%)",
+      blue:
+        "linear-gradient(135deg, #0EA5E9 0%, #3ABFF8 60%, #1D4ED8 100%)",
+      green:
+        "linear-gradient(135deg, #34D399 0%, #059669 100%)",
+      purple:
+        "linear-gradient(135deg, #A78BFA 0%, #7C3AED 100%)",
+    },
   },
+
   typography: {
-    fontFamily: "'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-    h4: {
-      fontWeight: 800,
-      letterSpacing: '-0.02em'
-    },
-    h5: {
-      fontWeight: 700,
-      letterSpacing: '-0.01em'
-    },
-    h6: {
-      fontWeight: 700
-    },
-    button: {
-      textTransform: 'none',
-      fontWeight: 600
-    }
+    fontFamily: "Inter, sans-serif",
+    h6: { fontWeight: 700 },
+    h5: { fontWeight: 700 },
+    h4: { fontWeight: 800 },
   },
-  shape: { borderRadius: 16 },
-  components: {
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backgroundImage: "linear-gradient(145deg, rgba(19, 24, 48, 0.95) 0%, rgba(10, 14, 39, 0.95) 100%)",
-          backdropFilter: "blur(20px)",
-          border: "1px solid rgba(99, 102, 241, 0.1)",
-          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)"
-        }
-      }
-    },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          background: "linear-gradient(135deg, rgba(19, 24, 48, 0.98) 0%, rgba(10, 14, 39, 0.98) 100%)",
-          backdropFilter: "blur(20px)",
-          borderBottom: "1px solid rgba(99, 102, 241, 0.2)",
-          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)"
-        }
-      }
-    },
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          fontWeight: 600,
-          borderRadius: 8
-        }
-      }
-    },
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: 10,
-          padding: '8px 20px',
-          fontWeight: 600
-        },
-        contained: {
-          boxShadow: '0 4px 14px rgba(99, 102, 241, 0.4)',
-          '&:hover': {
-            boxShadow: '0 6px 20px rgba(99, 102, 241, 0.6)'
-          }
-        }
-      }
-    },
-    MuiTableCell: {
-      styleOverrides: {
-        head: {
-          fontWeight: 700,
-          backgroundColor: 'rgba(99, 102, 241, 0.1)',
-          borderBottom: '2px solid rgba(99, 102, 241, 0.3)'
-        }
-      }
-    }
-  }
+
+  shape: {
+    borderRadius: 16,
+  },
 });
+
 export default theme;

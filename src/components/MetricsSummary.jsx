@@ -1,165 +1,182 @@
-import React from "react";
-import { Paper, Typography, Grid, Box } from "@mui/material";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+// MetricsSummary.jsx
+import React, { useMemo } from "react";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Box,
+  LinearProgress,
+  useTheme,
+} from "@mui/material";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
-import ShowChartIcon from "@mui/icons-material/ShowChart";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import InsightsIcon from "@mui/icons-material/Insights";
 import SpeedIcon from "@mui/icons-material/Speed";
+import EqualizerIcon from "@mui/icons-material/Equalizer";
+import { AreaChart, Area, Tooltip, ResponsiveContainer } from "recharts";
 
-export default function MetricsSummary({ runs }) {
-  const avgRmse = runs.length ? (runs.reduce((sum, r) => sum + r.metrics.rmse, 0) / runs.length).toFixed(3) : 0;
-  const avgR2 = runs.length ? (runs.reduce((sum, r) => sum + r.metrics.r2, 0) / runs.length).toFixed(3) : 0;
-  const avgMae = runs.length ? (runs.reduce((sum, r) => sum + r.metrics.mae, 0) / runs.length).toFixed(3) : 0;
-  const bestRmse = runs.length ? Math.min(...runs.map(r => r.metrics.rmse)).toFixed(3) : 0;
-  const bestR2 = runs.length ? Math.max(...runs.map(r => r.metrics.r2)).toFixed(3) : 0;
-  const bestMae = runs.length ? Math.min(...runs.map(r => r.metrics.mae)).toFixed(3) : 0;
+// Generate small sparkline data
+const generateTrendData = (arr, length = 15) => {
+  if (!arr || arr.length === 0)
+    return Array(length).fill(0).map((_, i) => ({ index: i, value: 0 }));
+  const step = Math.max(1, Math.floor(arr.length / length));
+  return arr.filter((_, idx) => idx % step === 0).map((v, i) => ({ index: i, value: v }));
+};
 
-  const metrics = [
-    {
-      title: "RMSE",
-      value: avgRmse,
-      best: bestRmse,
-      icon: TrendingDownIcon,
-      color: "#6366F1",
-      gradient: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)",
-      bgGradient: "radial-gradient(circle at top right, rgba(99, 102, 241, 0.2), transparent)"
-    },
-    {
-      title: "R² Score",
-      value: avgR2,
-      best: bestR2,
-      icon: TrendingUpIcon,
-      color: "#10B981",
-      gradient: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
-      bgGradient: "radial-gradient(circle at top right, rgba(16, 185, 129, 0.2), transparent)"
-    },
-    {
-      title: "MAE",
-      value: avgMae,
-      best: bestMae,
-      icon: ShowChartIcon,
-      color: "#F59E0B",
-      gradient: "linear-gradient(135deg, #F59E0B 0%, #EF4444 100%)",
-      bgGradient: "radial-gradient(circle at top right, rgba(245, 158, 11, 0.2), transparent)"
-    },
-    {
-      title: "Total Runs",
-      value: runs.length,
-      best: "Active",
-      icon: SpeedIcon,
-      color: "#EC4899",
-      gradient: "linear-gradient(135deg, #EC4899 0%, #DB2777 100%)",
-      bgGradient: "radial-gradient(circle at top right, rgba(236, 72, 153, 0.2), transparent)"
-    }
-  ];
+export default function MetricsSummary({ nodeHealth }) {
+  const theme = useTheme();
+  if (!nodeHealth) return null;
+
+  // Define metrics
+  const metrics = useMemo(() => {
+    const sampleTrend = generateTrendData(nodeHealth.rmse?.history ?? [], 20);
+
+    return [
+      {
+        title: "RMSE",
+        value: nodeHealth.rmse?.average ?? 0,
+        best: nodeHealth.rmse?.best ?? 0,
+        icon: <TrendingDownIcon fontSize="large" />,
+        gradient: theme.palette.gradients.primary,
+        trendData: generateTrendData(nodeHealth.rmse?.history),
+        color: "#6366F1",
+      },
+      {
+        title: "MAE",
+        value: nodeHealth.mae?.average ?? 0,
+        best: nodeHealth.mae?.best ?? 0,
+        icon: <TrendingDownIcon fontSize="large" />,
+        gradient: theme.palette.gradients.success,
+        trendData: generateTrendData(nodeHealth.mae?.history),
+        color: "#10B981",
+      },
+      {
+        title: "MAPE",
+        value: nodeHealth.mape ?? 0,
+        best: nodeHealth.mape ?? 0,
+        icon: <EqualizerIcon fontSize="large" />,
+        gradient: theme.palette.gradients.warning,
+        trendData: sampleTrend,
+        color: "#FBBF24",
+      },
+      {
+        title: "SMAPE",
+        value: nodeHealth.smape ?? 0,
+        best: nodeHealth.smape ?? 0,
+        icon: <InsightsIcon fontSize="large" />,
+        gradient: theme.palette.gradients.secondary,
+        trendData: sampleTrend,
+        color: "#8B5CF6",
+      },
+      {
+        title: "Drift",
+        value: nodeHealth.drift ?? 0,
+        best: nodeHealth.drift ?? 0,
+        icon: <TrendingUpIcon fontSize="large" />,
+        gradient: theme.palette.gradients.info,
+        trendData: sampleTrend,
+        color: "#EC4899",
+      },
+      {
+        title: "Volatility",
+        value: nodeHealth.volatility ?? 0,
+        best: nodeHealth.volatility ?? 0,
+        icon: <SpeedIcon fontSize="large" />,
+        gradient: theme.palette.gradients.error,
+        trendData: sampleTrend,
+        color: "#F97316",
+      },
+      {
+        title: "Stability",
+        value: nodeHealth.stability ?? 0,
+        best: nodeHealth.stability ?? 0,
+        icon: <SpeedIcon fontSize="large" />,
+        gradient: theme.palette.gradients.success,
+        trendData: sampleTrend,
+        color: "#22C55E",
+      },
+      {
+        title: "Accuracy",
+        value: nodeHealth.accuracy ?? 0,
+        best: nodeHealth.accuracy ?? 0,
+        icon: <TrendingUpIcon fontSize="large" />,
+        gradient: theme.palette.gradients.primary,
+        trendData: sampleTrend,
+        color: "#3B82F6",
+      },
+    ];
+  }, [nodeHealth, theme.palette.gradients]);
 
   return (
-    <Grid container spacing={3}>
-      {metrics.map((metric, idx) => {
-        const Icon = metric.icon;
-        return (
-          <Grid item xs={12} sm={6} lg={3} key={idx}>
-            <Paper 
-              elevation={8} 
-              sx={{ 
-                p: 3.5, 
-                position: "relative", 
-                overflow: "hidden", 
-                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                border: `1px solid ${metric.color}33`,
-                "&:hover": { 
-                  transform: "translateY(-8px) scale(1.02)",
-                  boxShadow: `0 12px 40px ${metric.color}40`,
-                  border: `1px solid ${metric.color}66`
-                }
+    <Box display="grid" gridTemplateColumns="repeat(auto-fit, minmax(260px, 1fr))" gap={3}>
+      {metrics.map((metric, index) => (
+        <Card
+          key={index}
+          sx={{
+            background: metric.gradient,
+            color: "#fff",
+            borderRadius: 3,
+            p: 2,
+            boxShadow: "0 6px 25px rgba(0,0,0,0.4)",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <CardContent>
+            <Box display="flex" alignItems="center" justifyContent="space-between" mb={1}>
+              <Typography variant="h6">{metric.title}</Typography>
+              {metric.icon}
+            </Box>
+
+            <Typography variant="h4" fontWeight="bold">
+              {metric.value.toFixed(4)}
+            </Typography>
+
+            <Typography variant="body2" opacity={0.9}>
+              Best: {metric.best.toFixed(4)}
+            </Typography>
+
+            <Box mt={2} height={60}>
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={metric.trendData}>
+                  <Tooltip
+                    contentStyle={{
+                      background: "rgba(0,0,0,0.7)",
+                      border: "none",
+                      borderRadius: 6,
+                      color: "#fff",
+                      fontSize: 12,
+                    }}
+                    formatter={(value) => value.toFixed(4)}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="value"
+                    stroke={metric.color}
+                    strokeWidth={2}
+                    fill={`${metric.color}33`}
+                    dot={false}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </Box>
+
+            <LinearProgress
+              variant="determinate"
+              value={Math.min((metric.best / (metric.value || 1)) * 100, 100)}
+              sx={{
+                mt: 2,
+                height: 8,
+                borderRadius: 5,
+                background: "rgba(255,255,255,0.3)",
+                "& .MuiLinearProgress-bar": {
+                  backgroundColor: "#fff",
+                },
               }}
-            >
-              {/* Animated background gradient */}
-              <Box sx={{ 
-                position: "absolute", 
-                top: 0, 
-                right: 0, 
-                width: 180, 
-                height: 180, 
-                background: metric.bgGradient,
-                borderRadius: "50%",
-                animation: "pulse 3s ease-in-out infinite"
-              }} />
-              
-              {/* Decorative line */}
-              <Box sx={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: 3,
-                background: metric.gradient
-              }} />
-
-              <Box sx={{ position: "relative", zIndex: 1 }}>
-                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2.5 }}>
-                  <Box sx={{ 
-                    p: 1.5, 
-                    borderRadius: 3, 
-                    background: metric.gradient,
-                    display: "flex",
-                    boxShadow: `0 4px 14px ${metric.color}60`
-                  }}>
-                    <Icon sx={{ color: "white", fontSize: 28 }} />
-                  </Box>
-                  <Box sx={{
-                    px: 2,
-                    py: 0.5,
-                    borderRadius: 2,
-                    bgcolor: `${metric.color}20`,
-                    border: `1px solid ${metric.color}40`
-                  }}>
-                    <Typography variant="caption" fontWeight={700} sx={{ color: metric.color }}>
-                      Best: {metric.best}
-                    </Typography>
-                  </Box>
-                </Box>
-
-                <Typography 
-                  variant="subtitle2" 
-                  color="text.secondary" 
-                  fontWeight={700}
-                  sx={{ mb: 1.5, letterSpacing: '0.5px', textTransform: 'uppercase' }}
-                >
-                  {metric.title}
-                </Typography>
-
-                <Typography 
-                  variant="h3" 
-                  fontWeight={800} 
-                  sx={{ 
-                    background: metric.gradient,
-                    backgroundClip: "text",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    letterSpacing: '-0.02em'
-                  }}
-                >
-                  {metric.value}
-                </Typography>
-              </Box>
-            </Paper>
-          </Grid>
-        );
-      })}
-      <style>
-        {`
-          @keyframes pulse {
-            0%, 100% {
-              opacity: 0.6;
-              transform: scale(1);
-            }
-            50% {
-              opacity: 0.8;
-              transform: scale(1.1);
-            }
-          }
-        `}
-      </style>
-    </Grid>
+            />
+          </CardContent>
+        </Card>
+      ))}
+    </Box>
   );
 }
